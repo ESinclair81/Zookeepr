@@ -47,14 +47,29 @@ function filterByQuery(query, animalsArray) {
     return filteredResults;
   }
   
+//* Function to find a single animal from the animals array **/
+  function findById(id, animalsArray) {
+    const result = animalsArray.filter(animal => animal.id === id)[0];
+    return result;
+  }
 
-  //* App.get callback to get JSON data from Express server *//
+  //* GET route callback to get JSON data from Express server *//
   app.get('/api/animals', (req, res) => {
     let results = animals;
     if (req.query) {
       results = filterByQuery(req.query, results);
     }
     res.json(results);
+  });
+
+  //** GET route for animals by ID **/
+  app.get('/api/animals/:id', (req, res) => {
+    const result = findById(req.params.id, animals);
+    if (result) {
+      res.json(result);
+    } else {
+      res.send(404);
+    }
   });
 
 
