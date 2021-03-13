@@ -72,6 +72,12 @@ function filterByQuery(query, animalsArray) {
     }
   });
 
+  //* User populate animals method */
+  app.post('/api/animals', (req, res) => {
+    // req.body is where our incoming content will be
+    console.log(req.body);
+    res.json(req.body);
+  });
 
   //* backend port app is listening on *//
   app.listen(PORT, () => {
