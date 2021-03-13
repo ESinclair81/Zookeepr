@@ -132,6 +132,17 @@ app.get('/', (req, res) => {
 });
 
 
+//** Route to animals.html  *//
+app.get('/animals', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
+//** Route to zookepeers.html  *//
+app.get('/zookeepers', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+
+
   //* backend port app is listening on *//
   app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
