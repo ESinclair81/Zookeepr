@@ -14,6 +14,9 @@ app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
 
+//** middleware tto get static code from server **/
+app.use(express.static('public'));
+
 //* Function to filter by query *//
 
 function filterByQuery(query, animalsArray) {
@@ -122,7 +125,13 @@ function filterByQuery(query, animalsArray) {
     }
   });
 
-  
+
+//** Route to index.html ************//
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+
   //* backend port app is listening on *//
   app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
